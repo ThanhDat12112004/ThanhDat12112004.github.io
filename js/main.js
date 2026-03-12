@@ -1,123 +1,127 @@
-// Initialize AOS
-document.addEventListener('DOMContentLoaded', function() {
-    AOS.init({
-        duration: 1000,
-        once: true
-    });
+// ===================================================
+// MAIN.JS - Shared + Home page logic
+// ===================================================
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Init AOS
+    AOS.init({ duration: 800, once: true, easing: 'ease-out-cubic' });
+
+    // Language switcher (shared)
+    initLanguageSwitcher();
+
+    // Home typewriter
+    initHomeTypewriter();
 });
 
-// Filter functionality for gallery and blog
-function initializeFilter(buttonSelector, itemSelector) {
-    const filterButtons = document.querySelectorAll(buttonSelector);
-    const items = document.querySelectorAll(itemSelector);
+// ===================================================
+// LANGUAGE SWITCHER (shared across pages)
+// ===================================================
+function initLanguageSwitcher() {
+    const buttons = document.querySelectorAll('.lang-btn');
+    if (!buttons.length) return;
+    const savedLang = localStorage.getItem('preferredLang') || 'vi';
+    setLanguage(savedLang, false);
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
-
-            const filter = button.getAttribute('data-filter') || button.getAttribute('data-category');
-            
-            items.forEach(item => {
-                const itemCategory = item.getAttribute('data-category') || 
-                                   item.querySelector('.blog-card-tag')?.textContent;
-                
-                if (filter === 'all') {
-                    item.style.display = 'block';
-                    item.classList.remove('hidden');
-                } else {
-                    if (itemCategory === filter) {
-                        item.style.display = 'block';
-                        item.classList.remove('hidden');
-                    } else {
-                        item.style.display = 'none';
-                        item.classList.add('hidden');
-                    }
-                }
-            });
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const lang = this.getAttribute('data-lang');
+            setLanguage(lang, true);
         });
     });
 }
 
-// Gallery modal functionality
-function initializeModal() {
-    const modal = document.querySelector('.modal');
-    if (!modal) return;
+function setLanguage(lang, animate) {
+    const buttons = document.querySelectorAll('.lang-btn');
+    const elements = document.querySelectorAll('[data-vi], [data-en]');
 
-    const modalImg = modal.querySelector('img');
-    const modalClose = modal.querySelector('.modal-close');
-    const prevBtn = modal.querySelector('.prev-btn');
-    const nextBtn = modal.querySelector('.next-btn');
-    let currentImageIndex = 0;
-
-    document.querySelectorAll('.gallery-item').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentImageIndex = index;
-            updateModalImage();
-            modal.classList.add('active');
-        });
+    buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
 
-    modalClose?.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
+    if (animate) {
+        document.body.classList.add('lang-switching');
+        setTimeout(() => {
+            applyLanguage(elements, lang);
+            document.body.classList.remove('lang-switching');
+        }, 300);
+    } else {
+        applyLanguage(elements, lang);
+    }
 
-    function updateModalImage() {
-        const items = document.querySelectorAll('.gallery-item');
-        const currentItem = items[currentImageIndex];
-        if (modalImg && currentItem) {
-            modalImg.src = currentItem.querySelector('img').src;
+    document.documentElement.lang = lang;
+    localStorage.setItem('preferredLang', lang);
+
+    // Restart typewriters
+    if (animate) {
+        setTimeout(() => {
+            if (typeof initHomeTypewriter === 'function') initHomeTypewriter();
+        }, 350);
+    }
+}
+
+function applyLanguage(elements, lang) {
+    elements.forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (text === null || text === undefined) return;
+        if (el.children.length === 0) {
+            el.textContent = text;
+        } else {
+            const textNodes = Array.from(el.childNodes).filter(n => n.nodeType === Node.TEXT_NODE);
+            if (textNodes.length > 0) {
+                textNodes[textNodes.length - 1].textContent = text;
+            }
         }
-    }
-
-    prevBtn?.addEventListener('click', () => {
-        const items = document.querySelectorAll('.gallery-item');
-        currentImageIndex = (currentImageIndex - 1 + items.length) % items.length;
-        updateModalImage();
-    });
-
-    nextBtn?.addEventListener('click', () => {
-        const items = document.querySelectorAll('.gallery-item');
-        currentImageIndex = (currentImageIndex + 1) % items.length;
-        updateModalImage();
     });
 }
 
-// Particle animation for home page
-function createParticles() {
-    const container = document.getElementById('particleContainer');
-    if (!container) return;
+// ===================================================
+// HOME TYPEWRITER
+// ===================================================
+let homeTypewriterTimeout = null;
 
-    const particleCount = 50;
+function initHomeTypewriter() {
+    const el = document.getElementById('homeTypewriter');
+    if (!el) return;
+    if (homeTypewriterTimeout) clearTimeout(homeTypewriterTimeout);
+    el.textContent = '';
 
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        const duration = Math.random() * 10 + 5;
-        const delay = Math.random() * 5;
-        particle.style.animation = `moveParticle ${duration}s ${delay}s infinite linear`;
-        
-        container.appendChild(particle);
+    const lang = localStorage.getItem('preferredLang') || 'vi';
+
+    const textsVi = [
+        'Lập Trình Viên Phần Mềm',
+        'Sinh viên HUTECH',
+        'Đam mê Blockchain & AI',
+        'Tự học không ngừng nghỉ'
+    ];
+    const textsEn = [
+        'Software Developer',
+        'HUTECH Student',
+        'Blockchain & AI Enthusiast',
+        'Self-taught & Always Learning'
+    ];
+
+    const texts = lang === 'vi' ? textsVi : textsEn;
+    let textIdx = 0, charIdx = 0, deleting = false;
+
+    function type() {
+        const cur = texts[textIdx];
+        if (deleting) {
+            el.textContent = cur.substring(0, charIdx - 1);
+            charIdx--;
+        } else {
+            el.textContent = cur.substring(0, charIdx + 1);
+            charIdx++;
+        }
+        let delay = deleting ? 30 : 80;
+        if (!deleting && charIdx === cur.length) {
+            delay = 2000;
+            deleting = true;
+        } else if (deleting && charIdx === 0) {
+            deleting = false;
+            textIdx = (textIdx + 1) % texts.length;
+            delay = 500;
+        }
+        homeTypewriterTimeout = setTimeout(type, delay);
     }
+    type();
 }
-
-// Initialize all functionality
-function initializeAll() {
-    createParticles();
-    initializeModal();
-    initializeFilter('.filter-btn', '.gallery-item');
-    initializeFilter('.category-btn', '.blog-card');
-}
-
-// Run initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeAll);

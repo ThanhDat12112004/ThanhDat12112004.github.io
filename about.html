@@ -10,70 +10,429 @@
     <link href="css/about.css" rel="stylesheet">
 </head>
 <body>
+    <canvas id="matrixCanvas"></canvas>
     <nav>
         <a href="./index.html">HOME</a>
         <a class="active">ABOUT</a>
-        <a href="./blog.html">BLOG</a>
         <a href="./gallery.html">GALLERY</a>
+        <!-- Language Switcher -->
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="vi" title="Tiếng Việt">
+                🇻🇳 VI
+            </button>
+            <button class="lang-btn" data-lang="en" title="English">
+                🇬🇧 EN
+            </button>
+        </div>
     </nav>
 
     <div class="container">
-        <section class="about-section">
-            <img src="images/imageschandung2-removebg-preview.jpg" alt="Dương Thành Đạt" class="profile-image">
-            <div class="about-content">
-                <h1>Dương Thành Đạt</h1>
-                <p>Chào mọi người, tôi là <strong>Dương Thành Đạt</strong>, sinh ra và lớn lên tại mảnh đất Cà Mau yên bình – nơi tận cùng của Tổ quốc. Hiện tại, tôi đang theo học ngành <strong>Công nghệ Thông tin</strong> tại <strong>Đại học Công nghệ HUTECH</strong>.</p>
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero-section" data-aos="fade-up">
+            <div class="hero-avatar">
+                <div class="avatar-ring">
+                    <img src="images/imageschandung2-removebg-preview.jpg" alt="Dương Thành Đạt">
+                </div>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span data-vi="Sẵn sàng làm việc" data-en="Open to Work">Sẵn sàng làm việc</span>
+                </div>
+            </div>
+            <div class="hero-info">
+                <p class="hero-greeting" data-vi="Xin chào, tôi là" data-en="Hello, I'm">Xin chào, tôi là</p>
+                <h1 class="hero-name">Dương Thành Đạt</h1>
+                <div class="typewriter-wrapper">
+                    <span class="hero-title" id="typewriter"></span><span class="typewriter-cursor">|</span>
+                </div>
+                <p class="hero-desc" data-vi="Sinh viên Công nghệ Phần mềm tại HUTECH (2022-2026), GPA 3.05/4.0. Đam mê phát triển phần mềm với nền tảng vững chắc về thuật toán, cấu trúc dữ liệu và lập trình." data-en="Software Engineering student at HUTECH (2022-2026), GPA 3.05/4.0. Passionate about software development with a solid foundation in algorithms, data structures, and programming.">Sinh viên Công nghệ Phần mềm tại HUTECH (2022-2026), GPA 3.05/4.0. Đam mê phát triển phần mềm với nền tảng vững chắc về thuật toán, cấu trúc dữ liệu và lập trình.</p>
+                <div class="hero-contact">
+                    <a href="mailto:devduongthanhdat@gmail.com" class="contact-chip">
+                        <i class="fas fa-envelope"></i> devduongthanhdat@gmail.com
+                    </a>
+                    <a href="tel:+84949927642" class="contact-chip">
+                        <i class="fas fa-phone"></i> +84 949 927 642
+                    </a>
+                    <a href="https://github.com/ThanhDat12112004" target="_blank" class="contact-chip">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/devduongthanhdat" target="_blank" class="contact-chip">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+                <a href="CV - Duong Thanh Dat.pdf" download class="download-cv-btn">
+                    <i class="fas fa-download"></i>
+                    <span data-vi="Tải CV" data-en="Download CV">Tải CV</span>
+                </a>
+            </div>
+        </section>
 
-                <p>Ngay từ khi còn nhỏ, tôi đã yêu thích công nghệ và các thiết bị điện tử. Những giờ ngồi khám phá cách các phần mềm hoạt động hay mày mò sửa lỗi máy tính đã thôi thúc tôi chọn <strong>IT</strong> làm con đường sự nghiệp của mình.</p>
+        <!-- ===== STATS SECTION ===== -->
+        <section class="stats-section" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="stat-number" data-count="3">0</div>
+                <div class="stat-label" data-vi="Kinh nghiệm thực tập" data-en="Work Experiences">Kinh nghiệm thực tập</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-code"></i></div>
+                <div class="stat-number" data-count="3">0</div>
+                <div class="stat-label" data-vi="Dự án hoàn thành" data-en="Projects Completed">Dự án hoàn thành</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                <div class="stat-number" data-count="5">0</div>
+                <div class="stat-label" data-vi="Chứng chỉ đạt được" data-en="Certificates Earned">Chứng chỉ đạt được</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                <div class="stat-number" data-count="2">0</div>
+                <div class="stat-label" data-vi="Giải thưởng" data-en="Awards">Giải thưởng</div>
+            </div>
+        </section>
 
-                <div class="interests">
-                    <h2>Sở thích của tôi</h2>
-                    <ul>
-                        <li><strong>Lập trình:</strong> Khám phá các ngôn ngữ như Java, Python, và C#</li>
-                        <li><strong>Thể thao:</strong> Bóng đá và cầu lông</li>
-                        <li><strong>Giải trí:</strong> Âm nhạc không lời và sách về công nghệ</li>
-                    </ul>
+        <!-- ===== ABOUT ME SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-user"></i>
+                <span data-vi="Về tôi" data-en="About Me">Về tôi</span>
+            </h2>
+            <div class="about-me-content">
+                <div class="about-text">
+                    <p data-vi="Tôi là Dương Thành Đạt, sinh ngày 12/11/2004 tại Cà Mau – nơi tận cùng của Tổ quốc. Hiện tại đang sinh sống và học tập tại Thủ Đức, TP. Hồ Chí Minh." data-en="I am Duong Thanh Dat, born on November 12, 2004, in Ca Mau – the southernmost tip of Vietnam. Currently living and studying in Thu Duc, Ho Chi Minh City.">Tôi là Dương Thành Đạt, sinh ngày 12/11/2004 tại Cà Mau – nơi tận cùng của Tổ quốc. Hiện tại đang sinh sống và học tập tại Thủ Đức, TP. Hồ Chí Minh.</p>
+                    <p data-vi="Tôi đang theo học ngành Công nghệ Phần mềm tại Đại học Công nghệ HUTECH (2022-2026) với GPA 3.05/4.0. Ngay từ nhỏ, tôi đã đam mê công nghệ và luôn tự tìm tòi, học hỏi các công nghệ mới." data-en="I am pursuing Software Engineering at HUTECH University of Technology (2022-2026) with a GPA of 3.05/4.0. Since childhood, I have been passionate about technology and always self-learning new technologies.">Tôi đang theo học ngành Công nghệ Phần mềm tại Đại học Công nghệ HUTECH (2022-2026) với GPA 3.05/4.0. Ngay từ nhỏ, tôi đã đam mê công nghệ và luôn tự tìm tòi, học hỏi các công nghệ mới.</p>
+                    <p data-vi="Tự học nhiều công nghệ đa dạng: AWS, AI & Machine Learning, Blockchain, Docker, WordPress. Có kinh nghiệm thực tế thông qua các dự án cá nhân và kỳ thực tập. Luôn khao khát phát triển trong lĩnh vực công nghệ." data-en="Self-taught in various technologies: AWS, AI & Machine Learning, Blockchain, Docker, WordPress. Have practical experience through personal projects and internships. Eager to develop in the technology field.">Tự học nhiều công nghệ đa dạng: AWS, AI & Machine Learning, Blockchain, Docker, WordPress. Có kinh nghiệm thực tế thông qua các dự án cá nhân và kỳ thực tập. Luôn khao khát phát triển trong lĩnh vực công nghệ.</p>
+                </div>
+                <div class="about-info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-birthday-cake"></i>
+                        <div>
+                            <span class="info-label" data-vi="Ngày sinh" data-en="Birthday">Ngày sinh</span>
+                            <span class="info-value">12/11/2004</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <span class="info-label" data-vi="Địa chỉ" data-en="Location">Địa chỉ</span>
+                            <span class="info-value" data-vi="Thủ Đức, TP.HCM" data-en="Thu Duc, Ho Chi Minh City">Thủ Đức, TP.HCM</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span class="info-label" data-vi="Trường" data-en="University">Trường</span>
+                            <span class="info-value">HUTECH</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <div>
+                            <span class="info-label">GPA</span>
+                            <span class="info-value">3.05 / 4.0</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="certificates">
-            <h2>Chứng chỉ & Thành tựu</h2>
-            <div class="certificate-grid">
-                <div class="certificate-card">
-                    <img src="images/networdking.png" alt="Certificate Networking Basic" class="certificate-image">
-                    <div class="certificate-info">
-                        <h3>Certificate Networking Basic</h3>
-                        <p>Bắt đầu tìm hiểu những kiến ​​thức cơ bản về mạng máy tính và khám phá cách thức hoạt động của mạng.</p>
+        <!-- ===== SKILLS SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-cogs"></i>
+                <span data-vi="Kỹ năng" data-en="Skills">Kỹ năng</span>
+            </h2>
+            <div class="skills-container">
+                <div class="skills-group">
+                    <h3 class="skills-group-title" data-vi="Ngôn ngữ lập trình" data-en="Programming Languages">Ngôn ngữ lập trình</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-tag"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+                        <span class="skill-tag"><i class="fas fa-code"></i> C#</span>
+                        <span class="skill-tag"><i class="fas fa-code"></i> Dart</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3 class="skills-group-title" data-vi="Frameworks & Công nghệ" data-en="Frameworks & Technologies">Frameworks & Công nghệ</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag"><i class="fab fa-react"></i> Next.js</span>
+                        <span class="skill-tag"><i class="fas fa-cube"></i> .NET MVC</span>
+                        <span class="skill-tag"><i class="fab fa-node-js"></i> Node.js</span>
+                        <span class="skill-tag"><i class="fas fa-mobile-alt"></i> Flutter</span>
+                        <span class="skill-tag"><i class="fas fa-link"></i> Blockchain</span>
+                        <span class="skill-tag"><i class="fas fa-brain"></i> TensorFlow</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3 class="skills-group-title" data-vi="Công cụ & Nền tảng" data-en="Tools & Platforms">Công cụ & Nền tảng</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag"><i class="fab fa-aws"></i> AWS</span>
+                        <span class="skill-tag"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="skill-tag"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skill-tag"><i class="fab fa-wordpress"></i> WordPress</span>
+                        <span class="skill-tag"><i class="fas fa-server"></i> VPS / Hosting</span>
+                        <span class="skill-tag"><i class="fas fa-network-wired"></i> DNS</span>
+                    </div>
+                </div>
+                <div class="skills-group">
+                    <h3 class="skills-group-title" data-vi="Kỹ năng mềm" data-en="Soft Skills">Kỹ năng mềm</h3>
+                    <div class="skills-tags">
+                        <span class="skill-tag" data-vi="🤝 Làm việc nhóm (HUTECH)" data-en="🤝 Teamwork (HUTECH)">🤝 Làm việc nhóm (HUTECH)</span>
+                        <span class="skill-tag" data-vi="🎤 Thuyết trình" data-en="🎤 Presentation">🎤 Thuyết trình</span>
+                        <span class="skill-tag" data-vi="💬 Giao tiếp (HUTECH)" data-en="💬 Communication (HUTECH)">💬 Giao tiếp (HUTECH)</span>
+                        <span class="skill-tag" data-vi="🧩 Giải quyết vấn đề" data-en="🧩 Problem-Solving">🧩 Giải quyết vấn đề</span>
+                        <span class="skill-tag" data-vi="📊 Phân tích" data-en="📊 Analytical">📊 Phân tích</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPERIENCE SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-briefcase"></i>
+                <span data-vi="Kinh nghiệm làm việc" data-en="Work Experience">Kinh nghiệm làm việc</span>
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 data-vi="Thực tập sinh" data-en="Intern">Thực tập sinh</h3>
+                            <span class="timeline-date">08/2025 - 09/2025</span>
+                        </div>
+                        <p class="timeline-company" data-vi="Trung tâm Chuyển đổi Số" data-en="Digital Transformation Center">Trung tâm Chuyển đổi Số</p>
+                        <ul class="timeline-list">
+                            <li data-vi="Hướng dẫn nhân viên sử dụng phần mềm VNPT, hỗ trợ xử lý sự cố" data-en="Guided staff in using VNPT software, provided troubleshooting support">Hướng dẫn nhân viên sử dụng phần mềm VNPT, hỗ trợ xử lý sự cố</li>
+                            <li data-vi="Phát triển kỹ năng giao tiếp, làm việc chuyên nghiệp, hiểu quy trình hành chính" data-en="Developed communication skills, worked professionally, understood administrative documentation processes">Phát triển kỹ năng giao tiếp, làm việc chuyên nghiệp, hiểu quy trình hành chính</li>
+                            <li data-vi="Hiểu nhu cầu người dùng thông qua trải nghiệm và mô phỏng vai trò khách hàng" data-en="Understood user needs through experiencing and simulating customer roles">Hiểu nhu cầu người dùng thông qua trải nghiệm và mô phỏng vai trò khách hàng</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="certificate-card">
-                    <img src="images/netjs1.png" alt="JavaScript Essentials 1" class="certificate-image">
-                    <div class="certificate-info">
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 data-vi="Thực tập sinh" data-en="Intern">Thực tập sinh</h3>
+                            <span class="timeline-date">05/2025 - 08/2025</span>
+                        </div>
+                        <p class="timeline-company">HDBank</p>
+                        <ul class="timeline-list">
+                            <li data-vi="Hỗ trợ công việc phụ trợ và tài liệu kỹ thuật" data-en="Supported auxiliary work and technical documentation">Hỗ trợ công việc phụ trợ và tài liệu kỹ thuật</li>
+                            <li data-vi="Tìm hiểu về AWS, AI Machine Learning và tối ưu hiệu năng hệ thống" data-en="Learned about AWS, AI Machine Learning, and system performance optimization">Tìm hiểu về AWS, AI Machine Learning và tối ưu hiệu năng hệ thống</li>
+                            <li data-vi="Quan sát quy trình bảo mật và kiểm thử phần mềm ngân hàng" data-en="Observed security processes and banking software testing">Quan sát quy trình bảo mật và kiểm thử phần mềm ngân hàng</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 data-vi="Quản trị Server" data-en="Server Administrator">Quản trị Server</h3>
+                            <span class="timeline-date">11/2018 - 04/2019</span>
+                        </div>
+                        <p class="timeline-company">Minecraft Server (BungeeCord - Java)</p>
+                        <ul class="timeline-list">
+                            <li data-vi="Vận hành server và tìm hiểu về DNS, Hosting, VPS" data-en="Operated server and learned about DNS, hosting, VPS">Vận hành server và tìm hiểu về DNS, Hosting, VPS</li>
+                            <li data-vi="Kiến thức về bảo mật server và Java" data-en="Gained knowledge of server security and Java">Kiến thức về bảo mật server và Java</li>
+                            <li data-vi="Marketing online và quản lý đội nhóm dưới 5 người" data-en="Online marketing and team management of under 5 people">Marketing online và quản lý đội nhóm dưới 5 người</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-rocket"></i>
+                <span data-vi="Dự án nổi bật" data-en="Featured Projects">Dự án nổi bật</span>
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="project-tech">NextJS & Blockchain</div>
+                    <h3>RWA Token GOLD</h3>
+                    <p data-vi="Nền tảng RWA token GOLD cho việc mua, bán, giao dịch VÀNG, thế chấp & cho vay trực tuyến." data-en="RWA token GOLD platform for buying, selling, trading GOLD, collateral & online lending.">Nền tảng RWA token GOLD cho việc mua, bán, giao dịch VÀNG, thế chấp & cho vay trực tuyến.</p>
+                    <span class="project-date">06/2025 - 11/2025</span>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <div class="project-tech">Flutter (Dart) & NodeJS & Python</div>
+                    <h3 data-vi="Ứng dụng chỉnh sửa ảnh AI" data-en="AI Photo Edit App">Ứng dụng chỉnh sửa ảnh AI</h3>
+                    <p data-vi="Ứng dụng chỉnh sửa ảnh tích hợp AI và Machine Learning." data-en="Photo editing application integrated with AI and machine learning.">Ứng dụng chỉnh sửa ảnh tích hợp AI và Machine Learning.</p>
+                    <span class="project-date">02/2023 - 04/2023</span>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="project-tech">.NET C# Microservice & MVC</div>
+                    <h3 data-vi="Website xem phim trực tuyến" data-en="Movie Streaming Website">Website xem phim trực tuyến</h3>
+                    <p data-vi="Website xem phim với kiến trúc microservices và hệ thống xác thực." data-en="Movie streaming website with microservices architecture and authentication system.">Website xem phim với kiến trúc microservices và hệ thống xác thực.</p>
+                    <span class="project-date">03/2025 - 06/2025</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AWARDS SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-trophy"></i>
+                <span data-vi="Giải thưởng" data-en="Awards">Giải thưởng</span>
+            </h2>
+            <div class="awards-grid">
+                <div class="award-card" data-aos="flip-left">
+                    <div class="award-icon">🥉</div>
+                    <h3>HUTECH CODEWAR 2024</h3>
+                    <p class="award-type" data-vi="Giải Ba" data-en="3rd Prize">Giải Ba</p>
+                    <p class="award-desc" data-vi="Cuộc thi lập trình cấp trường tại Đại học Công nghệ HUTECH" data-en="University-level programming competition at HUTECH University of Technology">Cuộc thi lập trình cấp trường tại Đại học Công nghệ HUTECH</p>
+                </div>
+                <div class="award-card" data-aos="flip-right">
+                    <div class="award-icon">🌐</div>
+                    <h3 data-vi="Website đầu tiên (WordPress)" data-en="My First Website (WordPress)">Website đầu tiên (WordPress)</h3>
+                    <p class="award-type" data-vi="Giải thưởng Phát triển Web 2024" data-en="Web Development Award 2024">Giải thưởng Phát triển Web 2024</p>
+                    <p class="award-desc" data-vi="Dự án website đầu tiên sử dụng WordPress" data-en="First website project using WordPress">Dự án website đầu tiên sử dụng WordPress</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CERTIFICATES SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-certificate"></i>
+                <span data-vi="Chứng chỉ" data-en="Certificates">Chứng chỉ</span>
+            </h2>
+            <div class="cert-grid">
+                <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="cert-image-wrapper">
+                        <img src="images/networdking.png" alt="Certificate Networking Basic">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Networking Basic</h3>
+                        <p data-vi="Kiến thức cơ bản về mạng máy tính và cách thức hoạt động của mạng." data-en="Fundamentals of computer networking and how networks operate.">Kiến thức cơ bản về mạng máy tính và cách thức hoạt động của mạng.</p>
+                    </div>
+                </div>
+
+                <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cert-image-wrapper">
+                        <img src="images/netjs1.png" alt="JavaScript Essentials 1">
+                    </div>
+                    <div class="cert-info">
                         <h3>JavaScript Essentials 1</h3>
-                        <p>Thiết kế, phát triển và cải thiện các chương trình JavaScript. Nâng cao kỹ năng lập trình của bạn để bắt đầu sự nghiệp trong lĩnh vực công nghệ.</p>
+                        <p data-vi="Thiết kế, phát triển và cải thiện các chương trình JavaScript." data-en="Design, develop and improve JavaScript programs.">Thiết kế, phát triển và cải thiện các chương trình JavaScript.</p>
                     </div>
                 </div>
 
-                <div class="certificate-card">
-                    <img src="images/netjs2.png" alt="JavaScript Essentials 2" class="certificate-image">
-                    <div class="certificate-info">
+                <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cert-image-wrapper">
+                        <img src="images/netjs2.png" alt="JavaScript Essentials 2">
+                    </div>
+                    <div class="cert-info">
                         <h3>JavaScript Essentials 2</h3>
-                        <p>Khóa học thứ hai trong chuỗi 2 khóa học. Có được nền tảng JavaScript vững chắc và chuẩn bị cho JSA – Chứng chỉ lập trình viên JavaScript liên kết được chứng nhận</p>
+                        <p data-vi="Nền tảng JavaScript vững chắc, chuẩn bị cho chứng chỉ JSA." data-en="Solid JavaScript foundation, preparing for JSA certification.">Nền tảng JavaScript vững chắc, chuẩn bị cho chứng chỉ JSA.</p>
                     </div>
                 </div>
 
-                <div class="certificate-card">
-                    <img src="images/deep-learning-using-tensorflow.png" alt="Deep Learning using TensorFlow" class="certificate-image">
-                    <div class="certificate-info">
-                        <h3>Deep Learning using TensorFlow</h3>
-                        <p>Người đạt huy hiệu này hiểu được các khái niệm thiết yếu, thuộc tính chức năng, cân nhắc vận hành và quy trình thực hiện khi sử dụng TensorFlow. Điều này bao gồm cách TensorFlow có thể được sử dụng trong việc điều chỉnh đường cong, hồi quy, phân loại và giảm thiểu lỗi...</p>
+                <div class="cert-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="cert-image-wrapper">
+                        <img src="images/deep-learning-using-tensorflow.png" alt="Deep Learning using TensorFlow">
+                    </div>
+                    <div class="cert-info">
+                        <h3>Deep Learning - TensorFlow</h3>
+                        <p data-vi="Khái niệm thiết yếu về Deep Learning: hồi quy, phân loại, giảm thiểu lỗi." data-en="Essential Deep Learning concepts: regression, classification, error minimization.">Khái niệm thiết yếu về Deep Learning: hồi quy, phân loại, giảm thiểu lỗi.</p>
                     </div>
                 </div>
 
+                <div class="cert-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="cert-image-wrapper">
+                        <div class="cert-placeholder">
+                            <i class="fas fa-language" style="font-size:3rem;color:var(--primary)"></i>
+                        </div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 data-vi="Chứng chỉ Tiếng Anh B1" data-en="English B1 Certificate">Chứng chỉ Tiếng Anh B1</h3>
+                        <p data-vi="Chứng chỉ Tiếng Anh trình độ B1 được cấp bởi Đại học Công nghệ HUTECH." data-en="English B1 Certificate issued by HUTECH University of Technology.">Chứng chỉ Tiếng Anh trình độ B1 được cấp bởi Đại học Công nghệ HUTECH.</p>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- ===== EDUCATION SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-graduation-cap"></i>
+                <span data-vi="Học vấn" data-en="Education">Học vấn</span>
+            </h2>
+            <div class="education-card">
+                <div class="edu-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="edu-info">
+                    <h3 data-vi="Đại học Công nghệ HUTECH" data-en="HUTECH University of Technology">Đại học Công nghệ HUTECH</h3>
+                    <p class="edu-major" data-vi="Ngành: Công nghệ Phần mềm" data-en="Major: Software Engineering">Ngành: Công nghệ Phần mềm</p>
+                    <p class="edu-time">2022 - 2026</p>
+                    <p class="edu-gpa">GPA: 3.05 / 4.0</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== INTERESTS SECTION ===== -->
+        <section class="section-block" data-aos="fade-up">
+            <h2 class="section-title">
+                <i class="fas fa-heart"></i>
+                <span data-vi="Sở thích" data-en="Interests">Sở thích</span>
+            </h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-laptop-code"></i></div>
+                    <span data-vi="Lập trình" data-en="Coding">Lập trình</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-futbol"></i></div>
+                    <span data-vi="Bóng đá" data-en="Football">Bóng đá</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-table-tennis"></i></div>
+                    <span data-vi="Cầu lông" data-en="Badminton">Cầu lông</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-music"></i></div>
+                    <span data-vi="Nhạc không lời" data-en="Instrumental Music">Nhạc không lời</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-book"></i></div>
+                    <span data-vi="Sách công nghệ" data-en="Tech Books">Sách công nghệ</span>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon"><i class="fas fa-gamepad"></i></div>
+                    <span data-vi="Game" data-en="Gaming">Game</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="about-footer" data-aos="fade-up">
+            <div class="footer-social">
+                <a href="https://www.facebook.com/youngboizseetingg" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/duongthan86/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/thanhdat12112004" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/devduongthanhdat" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>© 2024 Dương Thành Đạt. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+        </footer>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/matrix-bg.js"></script>
+    <script src="js/about.js"></script>
 </body>
 </html>

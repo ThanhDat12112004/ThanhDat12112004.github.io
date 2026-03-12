@@ -6,159 +6,170 @@
     <title>Gallery - Dương Thành Đạt</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/gallery.css" rel="stylesheet">
-  
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/gallery.css" rel="stylesheet">
 </head>
 <body>
+    <canvas id="matrixCanvas"></canvas>
     <nav>
         <a href="./index.html">HOME</a>
         <a href="./about.html">ABOUT</a>
-        <a href="./blog.html">BLOG</a>
         <a class="active">GALLERY</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="vi">&#x1f1fb;&#x1f1f3; VI</button>
+            <button class="lang-btn" data-lang="en">&#x1f1ec;&#x1f1e7; EN</button>
+        </div>
     </nav>
 
     <div class="container">
-        <div class="header">
-            <h1>Bộ Sưu Tập Ảnh</h1>
-            <p>Khoảnh khắc đáng nhớ trong hành trình phát triển</p>
+        <!-- Header -->
+        <div class="header" data-aos="fade-down">
+            <h1 data-vi="Thư viện ảnh" data-en="Gallery">Thư viện ảnh</h1>
+            <p data-vi="Những khoảnh khắc đáng nhớ trong hành trình học tập và phát triển" data-en="Memorable moments in my learning and development journey">Những khoảnh khắc đáng nhớ trong hành trình học tập và phát triển</p>
+            <div class="gallery-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="5">0</span>
+                    <span class="stat-label" data-vi="Hình ảnh" data-en="Photos">Hình ảnh</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="2">0</span>
+                    <span class="stat-label" data-vi="Giải thưởng" data-en="Awards">Giải thưởng</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="3">0</span>
+                    <span class="stat-label" data-vi="Sự kiện" data-en="Events">Sự kiện</span>
+                </div>
+            </div>
         </div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">Tất cả</button>
-            <button class="filter-btn" data-filter="awards">Giải thưởng</button>
-            <button class="filter-btn" data-filter="events">Sự Kiện</button>
+        <!-- Filter Buttons -->
+        <div class="filter-buttons" data-aos="fade-up">
+            <button class="filter-btn active" data-category="all">
+                <i class="fas fa-th"></i>
+                <span data-vi="Tất cả" data-en="All">Tất cả</span>
+            </button>
+            <button class="filter-btn" data-category="awards">
+                <i class="fas fa-trophy"></i>
+                <span data-vi="Giải thưởng" data-en="Awards">Giải thưởng</span>
+            </button>
+            <button class="filter-btn" data-category="events">
+                <i class="fas fa-calendar-alt"></i>
+                <span data-vi="Sự kiện" data-en="Events">Sự kiện</span>
+            </button>
         </div>
 
-        <div class="gallery-grid">
-            <!-- Gallery items sẽ được thêm vào đây -->
-        </div>
-    </div>
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid">
 
-    <div class="modal">
-        <span class="modal-close">&times;</span>
-        <div class="modal-content">
-            <img src="" alt="Preview">
-        </div>
-        <div class="modal-nav">
-            <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-
-    <script>
-     
-
-        // Sample gallery items data
-        const galleryItems = [
-            {
-                category: 'events',
-                image: 'images/anh5.jpg',
-                title: 'Fujinet',
-                description: 'Tham quan công ty Fujinet'
-            },
-            {
-                category: 'awards',
-                image: 'images/anh9.jpg',
-                title: 'My Fisrt Website',
-                description: 'Đạt giải khuyến khích'
-            },
-            {
-                category: 'awards',
-                image: 'images/anh10.jpg',
-                title: 'Hutech CodeWar',
-                description: 'Đạt giải ba cuộc thi'
-            }, {
-                category: 'events',
-                image: 'images/anh7.jpg',
-                title: 'Ươm mầm tài năng 2024',
-                description: 'Tham gia cuộc thi'
-            },
-            {
-                category: 'events',
-                image: 'images/anh4.jpg',
-                title: 'Hội thap quy trình phát triển phần mềm',
-                description: 'Tham gia trả lời câu hỏi'
-            },
-            // Add more items as needed
-        ];
-
-        // Populate gallery
-        function populateGallery(items) {
-            const gallery = document.querySelector('.gallery-grid');
-            gallery.innerHTML = items.map((item, index) => `
-                <div class="gallery-item ${item.category}" data-category="${item.category}" ">
-                    <img src="${item.image}" alt="${item.title}">
-                    <div class="gallery-item-info">
-                        <h3>${item.title}</h3>
-                        <p>${item.description}</p>
+            <!-- Card 1: Fujinet -->
+            <div class="gallery-card" data-category="events" data-aos="fade-up" data-aos-delay="100">
+                <div class="gallery-card-image">
+                    <img src="images/anh5.jpg" alt="Fujinet" loading="lazy">
+                    <div class="gallery-card-overlay">
+                        <button class="view-btn"><i class="fas fa-expand"></i></button>
                     </div>
                 </div>
-            `).join('');
-        }
+                <div class="gallery-card-info">
+                    <span class="gallery-card-tag events" data-vi="Sự kiện" data-en="Event">Sự kiện</span>
+                    <h3 data-vi="Tham quan công ty Fujinet" data-en="Visit to Fujinet Company">Tham quan công ty Fujinet</h3>
+                    <p data-vi="Tham quan và tìm hiểu quy trình làm việc tại công ty Fujinet Systems" data-en="Visited and learned about work processes at Fujinet Systems">Tham quan và tìm hiểu quy trình làm việc tại công ty Fujinet Systems</p>
+                </div>
+            </div>
 
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                button.classList.add('active');
+            <!-- Card 2: My First Website Award -->
+            <div class="gallery-card" data-category="awards" data-aos="fade-up" data-aos-delay="200">
+                <div class="gallery-card-image">
+                    <img src="images/anh9.jpg" alt="My First Website" loading="lazy">
+                    <div class="gallery-card-overlay">
+                        <button class="view-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-card-info">
+                    <span class="gallery-card-tag awards" data-vi="Giải thưởng" data-en="Award">Giải thưởng</span>
+                    <h3 data-vi="My First Website - Giải Khuyến Khích" data-en="My First Website - Consolation Prize">My First Website - Giải Khuyến Khích</h3>
+                    <p data-vi="Đạt giải khuyến khích cuộc thi My First Website tại HUTECH" data-en="Won consolation prize at My First Website competition at HUTECH">Đạt giải khuyến khích cuộc thi My First Website tại HUTECH</p>
+                </div>
+            </div>
 
-                const filter = button.getAttribute('data-filter');
-                const items = document.querySelectorAll('.gallery-item');
+            <!-- Card 3: Hutech CodeWar -->
+            <div class="gallery-card" data-category="awards" data-aos="fade-up" data-aos-delay="300">
+                <div class="gallery-card-image">
+                    <img src="images/anh10.jpg" alt="Hutech CodeWar" loading="lazy">
+                    <div class="gallery-card-overlay">
+                        <button class="view-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-card-info">
+                    <span class="gallery-card-tag awards" data-vi="Giải thưởng" data-en="Award">Giải thưởng</span>
+                    <h3 data-vi="Hutech CodeWar - Giải Ba" data-en="Hutech CodeWar - Third Prize">Hutech CodeWar - Giải Ba</h3>
+                    <p data-vi="Đạt giải ba cuộc thi Hutech CodeWar - thi lập trình thuật toán" data-en="Won third prize at Hutech CodeWar - algorithm programming competition">Đạt giải ba cuộc thi Hutech CodeWar - thi lập trình thuật toán</p>
+                </div>
+            </div>
 
-                items.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
+            <!-- Card 4: Ươm mầm tài năng -->
+            <div class="gallery-card" data-category="events" data-aos="fade-up" data-aos-delay="400">
+                <div class="gallery-card-image">
+                    <img src="images/anh7.jpg" alt="Ươm mầm tài năng 2024" loading="lazy">
+                    <div class="gallery-card-overlay">
+                        <button class="view-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-card-info">
+                    <span class="gallery-card-tag events" data-vi="Sự kiện" data-en="Event">Sự kiện</span>
+                    <h3 data-vi="Ươm Mầm Tài Năng 2024" data-en="Nurturing Talents 2024">Ươm Mầm Tài Năng 2024</h3>
+                    <p data-vi="Tham gia cuộc thi Ươm mầm tài năng CNTT 2024 tại HUTECH" data-en="Participated in Nurturing IT Talents 2024 competition at HUTECH">Tham gia cuộc thi Ươm mầm tài năng CNTT 2024 tại HUTECH</p>
+                </div>
+            </div>
 
-        // Modal functionality
-        const modal = document.querySelector('.modal');
-        const modalImg = modal.querySelector('img');
-        const modalClose = modal.querySelector('.modal-close');
-        const prevBtn = modal.querySelector('.prev-btn');
-        const nextBtn = modal.querySelector('.next-btn');
-        let currentImageIndex = 0;
+            <!-- Card 5: Hội thảo -->
+            <div class="gallery-card" data-category="events" data-aos="fade-up" data-aos-delay="500">
+                <div class="gallery-card-image">
+                    <img src="images/anh4.jpg" alt="Hội thảo quy trình phát triển phần mềm" loading="lazy">
+                    <div class="gallery-card-overlay">
+                        <button class="view-btn"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="gallery-card-info">
+                    <span class="gallery-card-tag events" data-vi="Sự kiện" data-en="Event">Sự kiện</span>
+                    <h3 data-vi="Hội Thảo Quy Trình Phát Triển Phần Mềm" data-en="Software Development Process Seminar">Hội Thảo Quy Trình Phát Triển Phần Mềm</h3>
+                    <p data-vi="Tham gia trả lời câu hỏi tại hội thảo về quy trình phát triển phần mềm" data-en="Participated in Q&A at the software development process seminar">Tham gia trả lời câu hỏi tại hội thảo về quy trình phát triển phần mềm</p>
+                </div>
+            </div>
 
-        document.querySelectorAll('.gallery-item').forEach((item, index) => {
-            item.addEventListener('click', () => {
-                currentImageIndex = index;
-                updateModalImage();
-                modal.classList.add('active');
-            });
-        });
+        </div>
+    </div>
 
-        modalClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
+    <!-- Modal -->
+    <div class="gallery-modal" id="galleryModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
+            <button class="modal-nav modal-prev" id="modalPrev"><i class="fas fa-chevron-left"></i></button>
+            <img id="modalImage" src="" alt="">
+            <button class="modal-nav modal-next" id="modalNext"><i class="fas fa-chevron-right"></i></button>
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDesc"></p>
+                <div class="modal-counter" id="modalCounter"></div>
+            </div>
+        </div>
+    </div>
 
-        function updateModalImage() {
-            const items = document.querySelectorAll('.gallery-item');
-            const currentItem = items[currentImageIndex];
-            modalImg.src = currentItem.querySelector('img').src;
-        }
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
-        prevBtn.addEventListener('click', () => {
-            const items = document.querySelectorAll('.gallery-item');
-            currentImageIndex = (currentImageIndex - 1 + items.length) % items.length;
-            updateModalImage();
-        });
+    <!-- Footer -->
+    <footer class="gallery-footer">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/youngboizseetingg" target="_blank" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/duongthan86/" target="_blank" data-aos="fade-up" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/thanhdat12112004" target="_blank" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/devduongthanhdat" target="_blank" data-aos="fade-up" data-aos-delay="400"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p data-aos="fade-up" data-aos-delay="500">&copy; 2024 Dương Thành Đạt. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
+    </footer>
 
-        nextBtn.addEventListener('click', () => {
-            const items = document.querySelectorAll('.gallery-item');
-            currentImageIndex = (currentImageIndex + 1) % items.length;
-            updateModalImage();
-        });
-
-        // Initialize gallery
-        populateGallery(galleryItems);
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/matrix-bg.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>

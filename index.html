@@ -3,100 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dương Thành Đạt - Portfolio</title>
+    <title>Dương Thành Đạt - Software Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <link href="./css/home.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/home.css" rel="stylesheet">
 </head>
 <body>
+    <canvas id="matrixCanvas"></canvas>
     <nav>
         <a class="active">HOME</a>
         <a href="about.html">ABOUT</a>
-        <a href="blog.html">BLOG</a>
         <a href="gallery.html">GALLERY</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="vi">🇻🇳 VI</button>
+            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
     </nav>
 
     <div class="main-content">
-        <div class="background-animation" id="particleContainer"></div>
-        
-        <div class="text-content" data-aos="fade-right">
-            <div class="name">DƯƠNG THÀNH ĐẠT//</div>
-            <div class="slogan">
-                <span>KHÔNG CẦN NÓI</span>
-                <span>CHỈ CẦN LÀM</span>
-                <span>THÀNH CÔNG</span>
-                <span>SẼ TRẢ LỜI</span>
+        <div class="hero-wrapper">
+            <div class="text-content" data-aos="fade-right">
+                <p class="greeting" data-vi="Xin chào, tôi là" data-en="Hello, I am">Xin chào, tôi là</p>
+                <h1><span class="name">DƯƠNG THÀNH ĐẠT</span><span class="name-suffix">//</span></h1>
+                <div class="title-typewriter">
+                    <span id="homeTypewriter"></span><span class="cursor">|</span>
+                </div>
+                <div class="slogan">
+                    <span data-aos="fade-right" data-aos-delay="200" data-vi="KHÔNG CẦN NÓI" data-en="NO NEED TO TALK">KHÔNG CẦN NÓI</span>
+                    <span data-aos="fade-right" data-aos-delay="400" data-vi="CHỈ CẦN LÀM" data-en="JUST DO IT">CHỈ CẦN LÀM</span>
+                    <span data-aos="fade-right" data-aos-delay="600" data-vi="THÀNH CÔNG" data-en="SUCCESS">THÀNH CÔNG</span>
+                    <span data-aos="fade-right" data-aos-delay="800" data-vi="SẼ TRẢ LỜI" data-en="WILL ANSWER">SẼ TRẢ LỜI</span>
+                </div>
+                <div class="cta-buttons" data-aos="fade-up" data-aos-delay="1000">
+                    <a href="about.html" class="cta-btn primary">
+                        <i class="fas fa-user"></i>
+                        <span data-vi="Về tôi" data-en="About Me">Về tôi</span>
+                    </a>
+                    <a href="CV - Duong Thanh Dat.pdf" download class="cta-btn secondary">
+                        <i class="fas fa-download"></i>
+                        <span data-vi="Tải CV" data-en="Download CV">Tải CV</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image-wrapper" data-aos="fade-left" data-aos-delay="300">
+                <img src="images/imageschandung2-removebg-preview.jpg" alt="Dương Thành Đạt" class="hero-image">
             </div>
         </div>
-        
-        <img src="images/imageschandung2-removebg-preview.jpg" alt="Hero Image" class="hero-image" data-aos="fade-left">
-        
+
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
     </div>
 
-    <footer>
+    <!-- Tech Stack Bar -->
+    <div class="tech-stack-bar" data-aos="fade-up">
+        <div class="tech-item"><i class="fab fa-java"></i> Java</div>
+        <div class="tech-item"><i class="fab fa-python"></i> Python</div>
+        <div class="tech-item"><i class="fab fa-js"></i> JavaScript</div>
+        <div class="tech-item"><i class="fas fa-code"></i> C#</div>
+        <div class="tech-item"><i class="fab fa-react"></i> Next.js</div>
+        <div class="tech-item"><i class="fas fa-mobile-alt"></i> Flutter</div>
+        <div class="tech-item"><i class="fab fa-docker"></i> Docker</div>
+        <div class="tech-item"><i class="fab fa-aws"></i> AWS</div>
+        <div class="tech-item"><i class="fas fa-link"></i> Blockchain</div>
+    </div>
+
+    <footer class="home-footer">
         <div class="social-icons">
-            <a href="https://www.facebook.com/youngboizseetingg" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/duongthan86/" data-aos="fade-up" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
-            <a href="https://github.com/thanhdat12112004" data-aos="fade-up" data-aos-delay="400"><i class="fab fa-github"></i></a>
+            <a href="https://www.facebook.com/youngboizseetingg" target="_blank" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/duongthan86/" target="_blank" data-aos="fade-up" data-aos-delay="200"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/thanhdat12112004" target="_blank" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/devduongthanhdat" target="_blank" data-aos="fade-up" data-aos-delay="400"><i class="fab fa-linkedin"></i></a>
         </div>
-        <p data-aos="fade-up" data-aos-delay="500">© 2024 DƯƠNG THÀNH ĐẠT</p>
+        <p data-aos="fade-up" data-aos-delay="500">&copy; 2024 Dương Thành Đạt. <span data-vi="Tất cả quyền được bảo lưu." data-en="All rights reserved.">Tất cả quyền được bảo lưu.</span></p>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        // Create animated background particles
-        function createParticles() {
-            const container = document.getElementById('particleContainer');
-            const particleCount = 50;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                // Random size between 2-6px
-                const size = Math.random() * 4 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random starting position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation duration and delay
-                const duration = Math.random() * 10 + 5;
-                const delay = Math.random() * 5;
-                particle.style.animation = `moveParticle ${duration}s ${delay}s infinite linear`;
-                
-                container.appendChild(particle);
-            }
-        }
-
-        // Initialize particles
-        createParticles();
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+    <script src="js/matrix-bg.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
